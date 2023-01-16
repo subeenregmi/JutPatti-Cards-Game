@@ -1,0 +1,200 @@
+card game draft 
+
+class Card 
+	private Face
+	private Suits
+	Suits = {H, D, C, S}
+	Faces = {A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K}
+	
+	public Card(face, suit)
+		if (face not in faces) or (suit not in Suits)
+			return false
+		else: 
+			this.face = face
+			this.suit = suit
+			
+	public convertFaceIndexToFace(index)
+		if (index < 0) or (index > 12) then 
+			return invalid
+		else: 
+			return Faces[index]
+			
+		
+	public convertSuitIndexToSuit(index)
+		if (index > 3) or (index < 0)
+			return false
+		else: 
+			return Suits[index]
+		
+class Deck 
+	protected List<Cards> deckOfCards
+	public name
+	public joker
+	
+	public Deck(Name)
+		this.name = Name 
+		
+	
+	public moveCard(inputDeck, Card)
+		if card is in Deck then
+			temp = card 
+			remove card from the List
+			add card to other deck
+			return true
+		else 
+			return false
+	
+	public addCard(Card)
+		if card is in deck then	
+			return false
+		else 
+			add card to the deck
+	
+	public removeCard(Card)
+		if card is in deck then
+			remove card from deck
+		else
+			return false:
+			
+	public generateStandardDeck() 
+		for i in range(0, 12)
+			for z in range(0, 3)
+				face = convertFaceIndextoFace(i)
+				suit = convertSuitIndextoSuit(z)
+				Card card = new Card(face, suit)
+				add card to deckOfCards
+	
+	public shuffleDeck
+		for i in range(10000)
+			randomNum1 = randint(0, 51)
+			randomNum2 = randint(0, 51)
+			temp = deckOfCards[randomNum1]
+			deckOfCards[randomNum1] = deckOfCards[randomNum2]
+			deckOfCards[randomNum2] = temp
+			
+	public createJoker()
+		randomNum1 = randint(0, 51)
+		joker = deck[randomNum1].Face
+	
+	
+	
+	
+class ThrowPile : Deck 
+
+	public List<cards> ThrowDeck
+	public maxCards
+	public int cards
+	
+	public ThrowPile()
+		this.cards = 0 
+		maxCards = 52
+		
+
+class Hand : Deck
+	public List<cards> deckOfCard
+	private MaxCards
+	public name 
+	public bool turn 
+	public List<(Card, Card)> Pairs
+	public jokerCard 
+	
+	public Hand(Deck, name, maxCards):
+		jokerCard = Deck.joker
+		this.turn = false
+		this.name = name
+		this.MaxCards = maxCards
+		
+	
+	public throwCard(card)
+		if turn = true
+			if card is in hand then 
+				add card to throw pile
+				remove card from deck
+			else
+				return false
+		else 
+			return false 
+			
+	public pickCardfrom(Deck)
+		if turn is true:
+			if deck is not empty
+				temp = card on top of *deck*
+				add card to current hand
+				remove card from the *deck*
+				turn = false
+				return true
+			else 
+				return false
+		else
+			return false
+	
+	public pairCard(card1, card2)
+	
+		if card1 =! card2 then 
+			if card1 and card2 has the same number then 
+				temp1 = card1	
+				temp2 = card2
+				remove card1 and card2 from deck
+				add (card1, card2) to pairs
+				return true
+			elif card1 or card2 == joker then 
+				temp1 = card1	
+				temp2 = card2
+				remove card1 and card2 from deck
+				add (card1, card2) to pairs
+				return true
+			else
+				return false
+		else
+			return false
+			
+	
+class Game
+	
+	public List<Hand> Players
+	public Throwpile;
+	public Deck Cards;
+
+	public Game()
+		Display menu
+		
+		do 
+			playercount = Userinput()
+			maxCards = userinput()
+		while (playercount > 5 or playercount < 0) || (maxCards > 7 or maxCards < 0)
+	
+	public CreateDeck()
+		Cards.generateStandardDeck()
+		Cards.shuffleDeck()
+		
+	public createHands
+		for i in range(playercount)
+			Hand PlayerHand = new Hand(i)
+			Players.add(PlayerHand)
+			for z in range(maxCards)
+				randomnum = random.randint(0, 51)
+				Cards.moveCard(PlayerHand.deckOfCards, Cards.deckOfCards[randomnum])
+			
+	public playGame();
+		for player in range(Players)
+			player.turn = true
+			choice = userinput("Move?")
+			case choice
+			
+				"1": 
+					Cards.moveCard(player, Cards.deckofCards[-1])
+					choice = userinput("Which Card?")
+					if choice is not valid index in player.deckOfCards then 
+						return false 
+					else
+						player.moveCard(Throwpile, playerHand.deckOfCards[choice])
+						player.turn = false
+				"2":	
+					pairCard1 = userinput("What two cards")
+					pairCard2 = userinput("What two cards")
+					pairWhat1, pairWhat2 -= 1
+					try: 
+						player.pairCard(Player.deckOfCards)
+					
+	
+	

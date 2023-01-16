@@ -1,0 +1,15 @@
+/home/subeenregmi/Documents/code/cardgame/bin/Debug/net6.0/cardgame
+/home/subeenregmi/Documents/code/cardgame/bin/Debug/net6.0/cardgame.deps.json
+/home/subeenregmi/Documents/code/cardgame/bin/Debug/net6.0/cardgame.runtimeconfig.json
+/home/subeenregmi/Documents/code/cardgame/bin/Debug/net6.0/cardgame.dll
+/home/subeenregmi/Documents/code/cardgame/bin/Debug/net6.0/ref/cardgame.dll
+/home/subeenregmi/Documents/code/cardgame/bin/Debug/net6.0/cardgame.pdb
+/home/subeenregmi/Documents/code/cardgame/obj/Debug/net6.0/cardgame.csproj.AssemblyReference.cache
+/home/subeenregmi/Documents/code/cardgame/obj/Debug/net6.0/cardgame.GeneratedMSBuildEditorConfig.editorconfig
+/home/subeenregmi/Documents/code/cardgame/obj/Debug/net6.0/cardgame.AssemblyInfoInputs.cache
+/home/subeenregmi/Documents/code/cardgame/obj/Debug/net6.0/cardgame.AssemblyInfo.cs
+/home/subeenregmi/Documents/code/cardgame/obj/Debug/net6.0/cardgame.csproj.CoreCompileInputs.cache
+/home/subeenregmi/Documents/code/cardgame/obj/Debug/net6.0/cardgame.dll
+/home/subeenregmi/Documents/code/cardgame/obj/Debug/net6.0/ref/cardgame.dll
+/home/subeenregmi/Documents/code/cardgame/obj/Debug/net6.0/cardgame.pdb
+/home/subeenregmi/Documents/code/cardgame/obj/Debug/net6.0/cardgame.genruntimeconfig.cache
