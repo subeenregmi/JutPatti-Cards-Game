@@ -9,42 +9,73 @@ namespace cardgame
 			Deck deck1 = new Deck("Deck 1 ");
 			Card card1 = new Card(1, 0);
 			Deck throwpile = new Deck("throwpile");
+			
+			Console.WriteLine("--------------- CARD1 DETAILS ------------------------");
 			Console.WriteLine(card1.Face + card1.Suit);
+			Console.WriteLine("---------------------------------------");
 			deck1.generateStandardDeck();
+			Console.WriteLine("---------------- DECK1 DETAILS -----------------------");
 			foreach (Card card in deck1.deckOfCards) 
 			{
 				Console.WriteLine(card.Face + card.Suit);
 			}
+			Console.WriteLine("---------------------------------------");
 			Hand hand1 = new Hand("Hand 1 ", deck1, throwpile);
 			deck1.MoveCardFromDeck(hand1, deck1.deckOfCards[0]);
+			Console.WriteLine("-------------- DECK1 COUNT AFTER MOVING FIRST ITEM TO HAND1-------------------------");
 			Console.WriteLine(deck1.deckOfCards.Count());
+			Console.WriteLine("---------------------------------------");
 			hand1.AddCard(card1);
 			hand1.turnPICK = true;
+			Console.WriteLine("----------------HAND 1 AFTER PICKING FROM DECK AND PAIRING-----------------------");
 			hand1.pickCardFromDeckIndex(1);
 			hand1.Pair(1, 2);
 			foreach (Card card in hand1.deckOfCards) 
 			{
 				Console.WriteLine(card.Face + card.Suit);
 			}
+			Console.WriteLine("---------------- HAND 1 COUNT -----------------------");
 			Console.WriteLine(hand1.deckOfCards.Count());
+			Console.WriteLine("----------------- HAND 1 FIRST ELEMENT PAIR BOOL ----------------------");
 			Console.WriteLine(hand1.deckOfCards[0].inPair);
+			Console.WriteLine("------------------ CURRENT PAIRED ITEMS ---------------------");
 			foreach (Tuple<Card, Card> tuple in hand1.Pairs)
 			{
 				Console.WriteLine(tuple.Item1.Face + tuple.Item2.Face);
 			}
 			hand1.turnTHROW = true;
 			hand1.ThrowCard(2);
+			Console.WriteLine("---------------- HAND1 AFTER THROW -----------------------");
 			foreach (Card card in hand1.deckOfCards) 
 			{
 				Console.WriteLine(card.Face + card.Suit);
 			}
+			Console.WriteLine("---------------- HAND 1 COUNT AFTER THROW -----------------------");
 			Console.WriteLine(hand1.deckOfCards.Count());
+			Console.WriteLine("-----------------UPDATED THROWPILE----------------------");
 			foreach (Card card in throwpile.deckOfCards) 
 			{
 				Console.WriteLine(card.Face + card.Suit);
 			}
+			Console.WriteLine("---------------CHECKING WHETHER THE THROWPILE AND HAND ELEMENTS ARE STILL IN PAIR------------------------");
 			Console.WriteLine(throwpile.deckOfCards[0].inPair);
 			Console.WriteLine(hand1.deckOfCards[0].inPair);
+			Console.WriteLine(hand1.deckOfCards[^1].inPair);
+			
+			Console.WriteLine("---------------THROWING THE LAST ITEM AND CHECKING IF PAIR CHANGED-----------------------");
+			hand1.ThrowCard(2);
+			Console.WriteLine("hand 1: ");
+			foreach (Card card in hand1.deckOfCards) 
+			{
+				Console.WriteLine(card.Face + card.Suit);
+				Console.WriteLine(card.inPair);
+			}
+			Console.WriteLine("throwpile 1: ");
+			foreach (Card card in throwpile.deckOfCards) 
+			{
+				Console.WriteLine(card.Face + card.Suit);
+				Console.WriteLine(card.inPair);
+			}
 			
 		}
 	}
@@ -238,7 +269,7 @@ namespace cardgame
 				}
 			}
 		}
-		public void ThrowCard(int CardPosition)
+		public bool ThrowCard(int CardPosition)
 		{
 			if (turnTHROW == true)
 			{
@@ -247,16 +278,25 @@ namespace cardgame
 				{
 					foreach(Tuple<Card, Card> cardTuple in Pairs) 
 					{
-						
+						if ((cardTuple.Item1 == card2throw) || (cardTuple.Item2 == card2throw))
+						{
+							cardTuple.Item1.inPair = false;
+							cardTuple.Item2.inPair = false;
+							Pairs.Remove(cardTuple);
+							MoveCardFromDeck(ThrowPile, card2throw);
+							return true;
+						}
 					}
 				}
 				else
 				{
-				card2throw.inPair = false;
-				MoveCardFromDeck(ThrowPile, card2throw);
-				turnTHROW = false;
+					MoveCardFromDeck(ThrowPile, card2throw);
+					turnTHROW = false;
+					return true;
 				}
 			}
+			return false;
+		
 		}
 		
 		public bool Pair(int CardPosition1, int CardPosition2)
