@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/subeenregmi/Documents/code/cardgame/cardgame.csproj": {}
+    "/Users/krishnaregmi/Desktop/code/JutPatti-Cards-Game/cardgame.csproj": {}
   },
   "projects": {
-    "/home/subeenregmi/Documents/code/cardgame/cardgame.csproj": {
+    "/Users/krishnaregmi/Desktop/code/JutPatti-Cards-Game/cardgame.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/subeenregmi/Documents/code/cardgame/cardgame.csproj",
+        "projectUniqueName": "/Users/krishnaregmi/Desktop/code/JutPatti-Cards-Game/cardgame.csproj",
         "projectName": "cardgame",
-        "projectPath": "/home/subeenregmi/Documents/code/cardgame/cardgame.csproj",
-        "packagesPath": "/home/subeenregmi/.nuget/packages/",
-        "outputPath": "/home/subeenregmi/Documents/code/cardgame/obj/",
+        "projectPath": "/Users/krishnaregmi/Desktop/code/JutPatti-Cards-Game/cardgame.csproj",
+        "packagesPath": "/Users/krishnaregmi/.nuget/packages/",
+        "outputPath": "/Users/krishnaregmi/Desktop/code/JutPatti-Cards-Game/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/subeenregmi/.nuget/NuGet/NuGet.Config"
+          "/Users/krishnaregmi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -43,7 +43,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -52,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/6.0.112/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }

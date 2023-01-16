@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GCJ0S5+7/jOFKucyxu9THde+yjE/Vm8ARtAvUl6Wa5TCT4ycrj+nxDrj9kEYhsBtrPUJf4AYgVCCh8clxL40UQ==",
+  "dgSpecHash": "uyuLN4nm0xZJvXck32P9Yxz1Mzgitq9T9gf7ZaHK5fNgeB01jRZ2wG/e7Tq0TZF3HoqiHzwdgxHc6FJcWG98fg==",
   "success": true,
-  "projectFilePath": "/home/subeenregmi/Documents/code/cardgame/cardgame.csproj",
+  "projectFilePath": "/Users/krishnaregmi/Desktop/code/JutPatti-Cards-Game/cardgame.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
