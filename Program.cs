@@ -6,77 +6,7 @@ namespace cardgame
 	{
 		static void Main(string[] args)
 		{
-			Deck deck1 = new Deck("Deck 1 ");
-			Card card1 = new Card(1, 0);
-			Deck throwpile = new Deck("throwpile");
-			
-			Console.WriteLine("--------------- CARD1 DETAILS ------------------------");
-			Console.WriteLine(card1.Face + card1.Suit);
-			Console.WriteLine("---------------------------------------");
-			deck1.generateStandardDeck();
-			Console.WriteLine("---------------- DECK1 DETAILS -----------------------");
-			foreach (Card card in deck1.deckOfCards) 
-			{
-				Console.WriteLine(card.Face + card.Suit);
-			}
-			Console.WriteLine("---------------------------------------");
-			Hand hand1 = new Hand("Hand 1 ", deck1, throwpile);
-			deck1.MoveCardFromDeck(hand1, deck1.deckOfCards[0]);
-			Console.WriteLine("-------------- DECK1 COUNT AFTER MOVING FIRST ITEM TO HAND1-------------------------");
-			Console.WriteLine(deck1.deckOfCards.Count());
-			Console.WriteLine("---------------------------------------");
-			hand1.AddCard(card1);
-			hand1.turnPICK = true;
-			Console.WriteLine("----------------HAND 1 AFTER PICKING FROM DECK AND PAIRING-----------------------");
-			hand1.pickCardFromDeckIndex(1);
-			hand1.Pair(1, 2);
-			foreach (Card card in hand1.deckOfCards) 
-			{
-				Console.WriteLine(card.Face + card.Suit);
-			}
-			Console.WriteLine("---------------- HAND 1 COUNT -----------------------");
-			Console.WriteLine(hand1.deckOfCards.Count());
-			Console.WriteLine("----------------- HAND 1 FIRST ELEMENT PAIR BOOL ----------------------");
-			Console.WriteLine(hand1.deckOfCards[0].inPair);
-			Console.WriteLine("------------------ CURRENT PAIRED ITEMS ---------------------");
-			foreach (Tuple<Card, Card> tuple in hand1.Pairs)
-			{
-				Console.WriteLine(tuple.Item1.Face + tuple.Item2.Face);
-			}
-			hand1.turnTHROW = true;
-			hand1.ThrowCard(2);
-			Console.WriteLine("---------------- HAND1 AFTER THROW -----------------------");
-			foreach (Card card in hand1.deckOfCards) 
-			{
-				Console.WriteLine(card.Face + card.Suit);
-			}
-			Console.WriteLine("---------------- HAND 1 COUNT AFTER THROW -----------------------");
-			Console.WriteLine(hand1.deckOfCards.Count());
-			Console.WriteLine("-----------------UPDATED THROWPILE----------------------");
-			foreach (Card card in throwpile.deckOfCards) 
-			{
-				Console.WriteLine(card.Face + card.Suit);
-			}
-			Console.WriteLine("---------------CHECKING WHETHER THE THROWPILE AND HAND ELEMENTS ARE STILL IN PAIR------------------------");
-			Console.WriteLine(throwpile.deckOfCards[0].inPair);
-			Console.WriteLine(hand1.deckOfCards[0].inPair);
-			Console.WriteLine(hand1.deckOfCards[^1].inPair);
-			
-			Console.WriteLine("---------------THROWING THE LAST ITEM AND CHECKING IF PAIR CHANGED-----------------------");
-			hand1.ThrowCard(2);
-			Console.WriteLine("hand 1: ");
-			foreach (Card card in hand1.deckOfCards) 
-			{
-				Console.WriteLine(card.Face + card.Suit);
-				Console.WriteLine(card.inPair);
-			}
-			Console.WriteLine("throwpile 1: ");
-			foreach (Card card in throwpile.deckOfCards) 
-			{
-				Console.WriteLine(card.Face + card.Suit);
-				Console.WriteLine(card.inPair);
-			}
-			
+			Game game = new Game();
 		}
 	}
 	
@@ -321,7 +251,69 @@ namespace cardgame
 			}
 		}
 		
+	}
+	
+	class Game 
+	{
+		public int players;
+		public int numberOfCards = 7;
+		public Deck decker = new Deck("Deck");
+		public Deck throwPile = new Deck("ThrowPile");
+		public List<Hand> playersHands = new List<Hand>();
+		public bool GameOver;
 		
+		public Game() 
+		{ 
+			mainMenu();
+			Console.WriteLine("How many players?");
+			string choice = Console.ReadLine();
+			int.TryParse(choice, out players);
+			StartGame();
+			GameOver = false;
+			
+		}		
+		public void mainMenu()
+		{
+			Console.WriteLine("Welcome to JUTPATTI!\n");
+			Console.WriteLine("RULES\n");
+			Console.WriteLine("(1) The aim of the game is to pair up all of your cards by matching their face value.\n");
+			Console.WriteLine("(2) Every turn a player must pick a card up and also throw a card.\n");
+			Console.WriteLine("(3) Players have an option to either pick from the deck or to pick from the throwpile.\n");
+			Console.WriteLine("(4) After picking a card, they must decide whether to keep the card or throw the card.\n");
+			Console.WriteLine("(5) If a player decides to keep a card they must throw a card from their deck.\n");
+			Console.WriteLine("(6) In a deck, there is one face value which is called the JOKER, this card is determined before the game and pairs with all card types.\n");
+		}
 		
+		public void StartGame() 
+		{
+			decker.generateStandardDeck();
+			decker.shuffleDeck();
+			for (int i = 1; i<=players; i++) 
+			{ 
+				Hand playerHand = new Hand($"Player{i}", decker, throwPile);
+				playersHands.Add(playerHand);
+			}
+			foreach (Hand playerHand in playersHands)
+			{
+				for (int i = 0; i <= 6; i++) 
+				{
+					decker.MoveCardFromDeck(playerHand, decker.deckOfCards[^1]);
+				}
+			}
+			
+			while (GameOver != true) 
+			{
+				foreach(Hand playerHand in playersHands) 
+				{
+					Console.WriteLine(playerHand.name + " CARDS: ");
+					foreach (Card card in playerHand.deckOfCards)
+					{
+						Console.WriteLine(card.Face + card.Suit);
+					}
+					Console.ReadKey();
+				}
+			}
+			
+		}
 	}
 }
